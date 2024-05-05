@@ -49,3 +49,24 @@ next.addEventListener("click", () => {
         showGallery();
     }
 });
+const intervalTime = 3000;
+let slideInterval;
+
+function startSlide() {
+    slideInterval = setInterval(() => {
+        currentIndex++;
+        if (currentIndex >= images.length) {
+            currentIndex = 0;
+        }
+        showGallery();
+    }, intervalTime);
+}
+
+function stopSlide() {
+    clearInterval(slideInterval);
+}
+
+startSlide();
+
+gallery.addEventListener("mouseenter", stopSlide);
+gallery.addEventListener("mouseleave", startSlide);
